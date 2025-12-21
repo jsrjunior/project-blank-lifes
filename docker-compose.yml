@@ -1,0 +1,183 @@
+# aad
+
+version: "3.6"
+
+services:
+  # Nginx Web Application
+  webserver:
+    container_name: aad-webserver
+    build:
+      context: .
+      dockerfile: ./docker/nginx/Dockerfile
+    working_dir: /var/www/aad
+    volumes:
+      - .:/var/www/aad
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      - NGINX_HOST=vip.aad.test
+
+  # Fail2Ban
+  fail2ban:
+    container_name: aad-fail2ban
+    image: crazymax/fail2ban:latest
+    volumes:
+      - ./docker/fail2ban/jail.local:/data/jail.local
+      - ./docker/nginx/log:/var/log/nginx  # Certifique-se de mapear os logs do Nginx
+    ports:
+      - "8082:8080"  # Porta opcional para o painel web do Fail2Ban
+    cap_add:
+      - NET_ADMIN
+
+  # SonarQube
+  sonarqube:
+    image: sonarqube:lts-community
+    container_name: aad-sonarqube
+    depends_on:
+      - postgres
+    environment:
+      - SONAR_JDBC_URL=jdbc:postgresql://postgres:5432/sonar
+      - SONAR_JDBC_USERNAME=sonar
+      - SONAR_JDBC_PASSWORD=sonar
+    ports:
+      - "9001:9000" # Porta ajustada para não conflitar com MinIO
+    volumes:
+      - sonar_data:/opt/sonarqube/data
+      - sonar_logs:/opt/sonarqube/logs
+      - sonar_extensions:/opt/sonarqube/extensions
+    networks:
+      - sonar_net
+
+  # PostgreSQL para SonarQube
+  postgres:
+    image: postgres:13
+    container_name: aad-postgres
+    environment:
+      - POSTGRES_USER=sonar
+      - POSTGRES_PASSWORD=sonar
+      - POSTGRES_DB=sonar
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - sonar_net
+
+  # PHP-FPM
+  php-fpm:
+    container_name: aad-php-fpm
+    build:
+      context: docker/php-fpm
+      args:
+        PHP_VERSION: 8.1
+        UID: 1000
+        GID: 1000
+    user: "1000:1000"
+    working_dir: /var/www/aad
+    environment:
+      - PHP_MAX_EXECUTION_TIME=150
+    volumes:
+      - .:/var/www/aad
+      - ./docker/php-fpm/php.ini:/usr/local/etc/php/php.ini
+
+  # MySQL
+  mysql:
+    container_name: aad-mysql
+    image: mysql:8.3
+    command: >
+      --default-authentication-plugin=mysql_native_password
+      --max_allowed_packet=1073741824
+      --sql-require-primary-key=0
+      --log-bin-trust-function-creators=1
+    restart: always
+    volumes:
+      - aad-mysql-data:/var/lib/mysql
+      - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=aad
+      - MYSQL_USER=aad
+      - MYSQL_PASSWORD=aad
+    ports:
+      - "3306:3306"
+
+  # PHPMyAdmin
+  #phpmyadmin:
+  #  container_name: aad-phpmyadmin
+  #  image: phpmyadmin/phpmyadmin:latest
+  #  depends_on:
+  #    - mysql
+  #  volumes:
+  #    - ./docker/phpmyadmin/config.user.inc.php:/etc/phpmyadmin/config.user.inc.php
+  #  environment:
+  #    PMA_HOST: mysql
+  #    PMA_PORT: 3306
+  #  ports:
+  #    - "8080:80"
+
+  # Redis
+  redis:
+    container_name: aad-redis
+    image: redis:alpine
+    volumes:
+      - aad-redis-data:/data
+      - ./docker/redis/redis.conf:/usr/local/etc/redis/redis.conf
+    ports:
+      - "6379:6379"
+    command: redis-server /usr/local/etc/redis/redis.conf
+
+  # MinIO
+  minio:
+    container_name: aad-minio
+    image: minio/minio:latest
+    hostname: minio
+    volumes:
+      - aad-minio-data:/export
+    ports:
+      - "9000:9000"
+      - "9090:9090"
+    environment:
+      MINIO_ACCESS_KEY: E5ACE7CFB4E45EXAMPLE
+      MINIO_SECRET_KEY: saadCjuApNPfdSEE0cLlLPw2OvEXAMPLE
+    command: server --console-address ":9090" /export
+
+  # MailHog
+  mailhog:
+    container_name: aad-mailhog
+    image: mailhog/mailhog:latest
+    ports:
+      - "8025:8025"
+
+  # Vite
+  vite:
+    container_name: aad-vite
+    image: node:14
+    working_dir: /var/www/aad
+    volumes:
+      - .:/var/www/aad
+    ports:
+      - "5174:5174"
+    command: npm run v
+
+volumes:
+  aad-mysql-data:
+    driver: local
+  #aad-phpmyadmin-data:
+  #  driver: local
+  aad-redis-data:
+    driver: local
+  aad-minio-data:
+    driver: local
+  sonar_data:
+    driver: local
+  sonar_logs:
+    driver: local
+  sonar_extensions:
+    driver: local
+  postgres_data:
+    driver: local
+
+networks:
+  sonar_net:
+    driver: bridge

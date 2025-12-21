@@ -1,0 +1,176 @@
+@charset "UTF-8";
+/* MENU */
+.sidebar, .sidebar-content {
+    background-color: #FFF !important;
+}
+
+/* GENERAL */
+.form-control:focus {
+    background-color: #F5F8FA;
+    border-color: #b6d5eb;
+    outline: 0;
+    box-shadow: none;
+}
+
+.k2-icon-area-login{
+    max-height: 120px;
+}
+
+@media (min-width: 768px) {
+    .k2-icon-area-login{
+        max-height: none;
+    }
+}
+
+.k2-icon-login{
+    max-width: 92px;
+    height: auto;
+}
+
+@media (min-width: 768px) {
+    .k2-icon-login{ max-width: 128px; }
+}
+
+.k2-launch-img-login{
+    width: 100%;
+    max-width: 560px;
+    height: auto;
+    padding-top: 2rem;
+}
+
+div#kt_app_sidebar_toggle{
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    left: 250px;
+    top: 19.5px;
+
+    background: #FFFFFF;
+    box-shadow: 0px 0px 10px rgba(113, 121, 136, 0.1);
+    border-radius: 5.53px;
+}
+
+.card-header:first-child {
+    border-radius: var(--bs-card-inner-border-radius) var(--bs-card-inner-border-radius) 0 0;
+}
+
+.card-title {
+    font-weight: 500;
+    font-size: 1.275rem;
+    color: var(--gray-700);
+    margin: 0.5rem 0;
+    text-transform: lowercase
+}
+
+.card-title::first-letter {
+    text-transform: uppercase
+}
+
+
+/* Estilização para Webkit (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+    width: 4px; /* Definindo a largura da barra de rolagem como bem fina */
+    background: transparent; /* Torna o fundo da barra de rolagem totalmente transparente */
+}
+
+::-webkit-scrollbar-track {
+    background: transparent; /* Torna o fundo da trilha da barra de rolagem totalmente transparente */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #b6d5eb; /* Cor azul claro para o thumb */
+    border-radius: 2px; /* Bordas ligeiramente arredondadas para o thumb */
+}
+
+/* Estilização para Firefox */
+* {
+    scrollbar-width: thin; /* 'auto' ou 'thin' para tornar a barra de rolagem mais fina */
+    scrollbar-color: #b6d5eb transparent; /* thumb e track, sendo o track transparente */
+}
+
+.card-grids {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 33px;
+}
+
+.card-grids a {
+    text-decoration: none !important;
+}
+
+.card-grids .card {
+    height: calc(100% - 33px);
+}
+.card-grids .card-title {
+    color: #621587;
+}
+
+.card-grids .card-title svg {
+    fill: #621587;
+    width:20px;
+}
+
+.hover\:text-primary:hover {
+    color: #6a258a;
+}
+
+#navbarVerticalMenu .nav-item .nav-link.index-0 {
+    padding: 16px 32px;
+}
+
+#navbarVerticalMenu .nav-item .nav-link.index-0 svg {
+    fill: #7E8299;
+    width: 20px;
+    height: 21px;
+}
+
+#navbarVerticalMenu .nav-item .nav-link.dropdown-toggle.collapsed:hover,
+#navbarVerticalMenu .nav-item .nav-link.index-0:hover {
+    background-color: #631587;
+    color: white;
+}
+
+#navbarVerticalMenu .nav-item .nav-link.dropdown-toggle.collapsed:hover svg,
+#navbarVerticalMenu .nav-item .nav-link.index-0:hover svg {
+    fill: white;
+}
+
+#navbarVerticalMenu .nav-item .nav-link.dropdown-toggle[aria-expanded="true"] {
+    background-color: white;
+    color: #631587;
+}
+
+#navbarVerticalMenu .nav-item .nav-link.dropdown-toggle[aria-expanded="true"] svg {
+    fill: #631587;
+}
+
+#navbarVerticalMenu .nav-item .nav-link.dropdown-toggle[aria-expanded="true"]:hover {
+    background-color: white;
+    color: #631587;
+}
+
+#navbarVerticalMenu .nav-item .nav-link.dropdown-toggle[aria-expanded="true"]:hover svg {
+    fill: #631587;
+}
+
+#navbarVerticalMenu .nav-item .nav-collapse .nav-link:hover  {
+    background-color: #631587;
+    color: white;
+}
+
+#navbarVerticalMenu .nav-item .nav-collapse .nav-link:hover svg {
+    fill: white;
+}
+
+#navbarVerticalMenu .nav-item.active,
+#navbarVerticalMenu .nav-link.active {
+    background-color: #631587;
+    color: white;
+}
+
+#navbarVerticalMenu .nav-item.active svg,
+#navbarVerticalMenu .nav-link.active svg {
+    fill: white !important;
+}
+
+

@@ -1,0 +1,8 @@
+[nginx-req-limit]
+enabled  = true
+filter   = nginx-req-limit
+action   = iptables[name=HTTP, port=http, protocol=tcp]
+logpath  = /var/log/nginx/access.log
+maxretry = 60  # Número de requisições permitidas antes de banir
+findtime = 60  # Tempo em segundos para contar as tentativas
+bantime  = 3600  # Banimento em segundos (1 hora)
