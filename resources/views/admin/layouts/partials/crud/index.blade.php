@@ -111,27 +111,7 @@
                                 <tr {!! $instance->getAdminRowAttributes($loop->index, $resource) !!}>
                                    @foreach ($resource->getAdminColumns() as $key => $column)
                                         <td {!! $resource->getAdminColumnAttributes($loop->index, $column) !!}>
-                                            @if ($column === 'new_data')
-                                                @if ($resource->approvalable_type === "App\Models\DependentFollowup" && !empty($resource->new_data))
-                                                    {{ $resource->new_data['rule_obs'] ?? '—' }}
-                                                @else
-                                                    —
-                                                @endif
-
-                                            @elseif ($column === 'contract_id')
-                                                @if (!empty($resource->new_data['contract_id']))
-                                                    <a href="/contract/{{ $resource->new_data['contract_id'] }}/edit"
-                                                        class="text-blue"
-                                                        >
-                                                        {{ $resource->new_data['contract_id'] }}
-                                                    </a>
-                                                @else
-                                                    —
-                                                @endif
-                        
-                                            @else
-                                                {!! $resource->getAdminColumn($column) !!}
-                                            @endif
+                                            {!! $resource->getAdminColumn($column) !!}
                                         </td>
                                     @endforeach
 

@@ -151,4 +151,9 @@ class User extends Authenticatable
         return 'desc';
     }
 
+    public function isSuper(): bool
+    {
+        return $this->hasRole('Super');
+    }
+
 }

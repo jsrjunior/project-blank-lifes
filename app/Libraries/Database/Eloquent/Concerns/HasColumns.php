@@ -53,7 +53,7 @@ trait HasColumns
             $value = $this->asDateTime($value);
         }
 
-        return $value->format(config('admin.date_format'));
+        return $value->format(config('adminlte.date_format'));
     }
 
     /**

@@ -19,6 +19,13 @@ return [
         ],
 
 
+        ['header' => 'CADASTROS'],
+        [
+            'text' => 'Tipo de Endereço',
+            'route' => 'web.admin.address_types.index',
+            'icon' => 'fas fa-users',
+            'can' => 'list,App\\Models\\AddressType',
+        ],
 
         ['header' => 'CONFIGURAÇÕES'],
         [

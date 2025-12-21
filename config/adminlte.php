@@ -300,6 +300,9 @@ return [
 
     'menu' => require __DIR__.'/menu.php',
 
+    'date_format' => 'd/m/Y',
+    'datetime_format' => 'd/m/Y h:m',
+
     /*
     |--------------------------------------------------------------------------
     | Menu Filters

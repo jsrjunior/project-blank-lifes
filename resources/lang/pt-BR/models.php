@@ -1917,13 +1917,6 @@ return [
         $generics['actions']['type']('Endereço')
     ),
 
-    'App\\Models\\AddressType' => array_merge(
-        [
-            'name' => 'Motivo de cancelamento do contrato',
-        ],
-        $generics['actions']['type']('Motivo de cancelamento do contrato')
-    ),
-
     'App\\Models\\PhoneType' => $generics['actions']['type']('Telefone'),
 
     'App\\Models\\CustomerStatus' => $generics['actions']['type']('Status do Cliente'),
