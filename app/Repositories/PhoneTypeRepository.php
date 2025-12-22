@@ -2,8 +2,8 @@
 
 namespace App\Repositories;
 
-use App\Models\Life;
-use App\Models\Phone;
+
+use App\Models\PhoneType;
 use App\Repositories\Concerns\WithTypes;
 use App\Repositories\Concerns\WithSelectOptions;
 
@@ -17,7 +17,7 @@ class PhoneTypeRepository extends CrudRepository
      *
      * @var string
      */
-    protected $resourceType = Phone::class;
+    protected $resourceType = PhoneType::class;
 
     /**
      * Return the resource main column.

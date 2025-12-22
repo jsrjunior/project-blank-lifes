@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Email;
+use App\Models\EmailType;
 use App\Models\Life;
 use App\Repositories\Concerns\WithTypes;
 use App\Repositories\Concerns\WithSelectOptions;
@@ -17,7 +18,7 @@ class EmailTypeRepository extends CrudRepository
      *
      * @var string
      */
-    protected $resourceType = Email::class;
+    protected $resourceType = EmailType::class;
 
     /**
      * Return the resource main column.

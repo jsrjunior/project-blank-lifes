@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Email;
+use App\Models\EmailType;
 use App\Models\Life;
 use App\Repositories\EmailTypeRepository;
 use App\Repositories\LifeRepository;
@@ -14,7 +15,7 @@ class EmailTypeController extends CrudController
      *
      * @var string
      */
-    protected $resourceType = Email::class;
+    protected $resourceType = EmailType::class;
 
     /**
      * Type of the managing repository.

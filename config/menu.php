@@ -21,10 +21,22 @@ return [
 
         ['header' => 'CADASTROS'],
         [
-            'text' => 'Tipo de Endereço',
+            'text' => 'Tipos de Endereços',
             'route' => 'web.admin.address_types.index',
-            'icon' => 'fas fa-users',
+            'icon' => 'fas fa-map-marked-alt', // Remete a localização/endereço
             'can' => 'list,App\\Models\\AddressType',
+        ],
+        [
+            'text' => 'Tipos de Emails',
+            'route' => 'web.admin.email_types.index',
+            'icon' => 'fas fa-envelope-open-text', // Remete a correspondência/e-mail
+            'can' => 'list,App\\Models\\EmailType',
+        ],
+        [
+            'text' => 'Tipos de Telefones',
+            'route' => 'web.admin.phone_types.index',
+            'icon' => 'fas fa-phone-square-alt', // Remete a telefonia
+            'can' => 'list,App\\Models\\PhoneType',
         ],
 
         ['header' => 'CONFIGURAÇÕES'],

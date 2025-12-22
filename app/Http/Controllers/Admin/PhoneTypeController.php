@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Life;
-use App\Models\Phone;
 use App\Models\PhoneType;
 use App\Repositories\PhoneTypeRepository;
 
