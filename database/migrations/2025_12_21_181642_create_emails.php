@@ -22,8 +22,8 @@ return new class extends Migration
             $table->id();
 
             // Vínculo com a entidade principal
-            $table->foreignId('life_id')
-                ->constrained('lifes')
+            $table->foreignId('live_id')
+                ->constrained('lives')
                 ->cascadeOnDelete();
 
             // Tipo do e-mail
@@ -42,7 +42,7 @@ return new class extends Migration
             $table->softDeletes();
 
             // Índices úteis
-            $table->index(['life_id', 'is_primary']);
+            $table->index(['live_id', 'is_primary']);
         });
     }
 

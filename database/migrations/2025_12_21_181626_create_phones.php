@@ -21,8 +21,8 @@ return new class extends Migration
         Schema::create('phones', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('life_id')
-                ->constrained('lifes')
+            $table->foreignId('live_id')
+                ->constrained('lives')
                 ->cascadeOnDelete();
 
             $table->foreignId('phone_type_id')

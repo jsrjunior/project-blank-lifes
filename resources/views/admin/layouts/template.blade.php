@@ -10,7 +10,16 @@
     @yield('content')
 @endsection
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('vendor/tempusdominus/tempusdominus-bootstrap-4.min.css') }}">
+@endsection
+
 @section('js')
+    <script src="{{ asset('vendor/moment/moment.min.js') }}"></script>
+    <script src="{{ asset('vendor/moment/br.min.js') }}"></script>
+
+    <script src="{{ asset('vendor/tempusdominus/tempusdominus-bootstrap-4.min.js') }}"></script>
+    
     @vite(['resources/js/app.js'])
     @stack('js')
     @include('admin.layouts.partials.scripts')

@@ -6,11 +6,13 @@ namespace App\Providers;
 
 use App\Models\AddressType;
 use App\Models\EmailType;
+use App\Models\Life;
 use App\Models\PhoneType;
 use App\Models\Role;
 use App\Models\User;
 use App\Policies\AddressTypePolicy;
 use App\Policies\EmailTypePolicy;
+use App\Policies\LifePolicy;
 use App\Policies\PhoneTypePolicy;
 use App\Policies\RolePolicy;
 use App\Policies\UserPolicy;
@@ -27,6 +29,7 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         AddressType::class              =>  AddressTypePolicy::class,
         EmailType::class                =>  EmailTypePolicy::class,
+        Life::class                     =>  LifePolicy::class,
         Role::class                     =>  RolePolicy::class,
         PhoneType::class                =>  PhoneTypePolicy::class,
         User::class                     =>  UserPolicy::class,        

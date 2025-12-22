@@ -44,7 +44,7 @@ class Life extends Model
      */
     public function getAdminColumns()
     {
-        return ['id', 'first_name', 'birth_date', 'created_at'];
+        return ['id', 'first_name','name', 'birth_date', 'created_at'];
     }
 
     /**
@@ -112,5 +112,22 @@ class Life extends Model
 
     public function addresses(){
         return $this->hasMany(Address::class);
+    }
+
+    /**
+     * Retorna apenas o primeiro nome.
+     *
+     * @return string|null
+     */
+    public function getFirstNameAttribute(): ?string
+    {
+        if (empty($this->name)) {
+            return null;
+        }
+
+        // Remove espaços extras e quebra o nome
+        $parts = preg_split('/\s+/', trim($this->name));
+
+        return $parts[0] ?? null;
     }
 }

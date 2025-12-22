@@ -18,7 +18,13 @@ return [
             'text' => 'search',
         ],
 
-
+        ['header' => 'GESTÃO'],
+        [
+            'text' => 'Vidas',
+            'route' => 'web.admin.lives.index',
+            'icon' => 'fas fa-map-marked-alt', // Remete a localização/endereço
+            'can' => 'list,App\\Models\\Life',
+        ],
         ['header' => 'CADASTROS'],
         [
             'text' => 'Tipos de Endereços',
