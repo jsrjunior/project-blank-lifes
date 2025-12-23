@@ -7,11 +7,10 @@ use App\Events\ResourceUpdatedEvent;
 use App\Libraries\Database\Eloquent\Model;
 use App\Models\Concerns\WithIdAdminColumn;
 use App\Models\Concerns\WithNameAdminColumn;
-use App\Models\Document;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Life extends Model
+class DocumentType extends Model
 {
 
     use SoftDeletes;
@@ -26,16 +25,7 @@ class Life extends Model
     ];
 
     protected $fillable = [
-        'name',
-        'birth_date',
-    ];
-
-     protected $appends = [
-        'first_name',
-    ];
-
-    protected $casts = [
-        'birth_date' => 'date',
+        'name','slug'
     ];
 
     /**
@@ -45,7 +35,7 @@ class Life extends Model
      */
     public function getAdminColumns()
     {
-        return ['id', 'first_name','name', 'birth_date', 'created_at'];
+        return ['id', 'name','slug', 'created_at'];
     }
 
     /**
@@ -58,7 +48,7 @@ class Life extends Model
      */
     public function getAdminColumnExpand($index, $attribute)
     {
-        return in_array($attribute, ['first_name']);
+        return in_array($attribute, ['name']);
     }
 
     /**
@@ -101,39 +91,5 @@ class Life extends Model
         $modelClass = $this->model;
 
         return new $modelClass();
-    }
-
-    public function phones(){
-        return $this->hasMany(Phone::class);
-    }
-
-    public function emails(){
-        return $this->hasMany(Email::class);
-    }
-
-    public function addresses(){
-        return $this->hasMany(Address::class);
-    }
-
-    public function documents()
-    {
-        return $this->morphMany(Document::class, 'documentable');
-    }
-
-    /**
-     * Retorna apenas o primeiro nome.
-     *
-     * @return string|null
-     */
-    public function getFirstNameAttribute(): ?string
-    {
-        if (empty($this->name)) {
-            return null;
-        }
-
-        // Remove espaços extras e quebra o nome
-        $parts = preg_split('/\s+/', trim($this->name));
-
-        return $parts[0] ?? null;
     }
 }

@@ -22,7 +22,7 @@ return new class extends Migration
             $table->id();
 
             // Vínculo com a entidade principal
-            $table->foreignId('live_id')
+            $table->foreignId('life_id')
                 ->constrained('lives')
                 ->cascadeOnDelete();
 
@@ -42,7 +42,7 @@ return new class extends Migration
             $table->softDeletes();
 
             // Índices úteis
-            $table->index(['live_id', 'is_primary']);
+            $table->index(['life_id', 'is_primary']);
         });
     }
 

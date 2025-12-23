@@ -21,7 +21,7 @@ return new class extends Migration
         Schema::create('phones', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('live_id')
+            $table->foreignId('life_id')
                 ->constrained('lives')
                 ->cascadeOnDelete();
 
@@ -29,7 +29,7 @@ return new class extends Migration
                 ->constrained('phone_types')
                 ->restrictOnDelete();
 
-            $table->integer('ddi');
+            $table->integer('ddi')->default(55);
             $table->integer('ddd');
             $table->string('number');
             $table->boolean('is_primary')->default(false);

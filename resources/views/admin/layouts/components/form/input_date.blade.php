@@ -27,12 +27,12 @@
 
 @push('js')
 <script>
-    $(function () {
+    $(function () {        
         // Inicializa o plugin especificamente para este componente
         $('#{{ $uniqueId }}').datetimepicker({
             locale: 'pt-br',
             format: 'DD/MM/YYYY',
-            allowInputToggle: true, // Permite abrir ao clicar no campo de texto
+            allowInputToggle: true,
             icons: {
                 time: 'fas fa-clock',
                 date: 'fas fa-calendar',

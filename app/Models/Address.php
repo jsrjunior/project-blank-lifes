@@ -22,7 +22,7 @@ class Address extends Model
         'district',
         'city',
         'state',
-        'zip_code',
+        'zipcode',
         'country',
         'is_primary',
     ];

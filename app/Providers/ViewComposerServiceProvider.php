@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Http\ViewComposers\Admin\LifeViewComposer;
 use App\Http\ViewComposers\Admin\RoleViewComposer;
 use App\Http\ViewComposers\Admin\UserViewComposer;
 use Illuminate\Support\Facades\View;
@@ -18,6 +19,7 @@ class ViewComposerServiceProvider extends ServiceProvider
     {
         View::composer('admin.roles.*', RoleViewComposer::class);
         View::composer('admin.users.*', UserViewComposer::class);
+        View::composer('admin.lives.*', LifeViewComposer::class);
     }
 
     /**

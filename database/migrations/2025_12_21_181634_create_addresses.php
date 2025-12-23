@@ -21,7 +21,7 @@ return new class extends Migration
         Schema::create('addresses', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('live_id')
+            $table->foreignId('life_id')
                 ->constrained('lives')
                 ->cascadeOnDelete();
 
@@ -42,7 +42,7 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->index(['live_id', 'is_primary']);
+            $table->index(['life_id', 'is_primary']);
             $table->index('zipcode');
         });
     }

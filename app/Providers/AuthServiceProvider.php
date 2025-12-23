@@ -11,11 +11,13 @@ use App\Models\PhoneType;
 use App\Models\Role;
 use App\Models\User;
 use App\Policies\AddressTypePolicy;
+use App\Policies\DocumentTypePolicy;
 use App\Policies\EmailTypePolicy;
 use App\Policies\LifePolicy;
 use App\Policies\PhoneTypePolicy;
 use App\Policies\RolePolicy;
 use App\Policies\UserPolicy;
+use Dom\DocumentType;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -28,6 +30,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         AddressType::class              =>  AddressTypePolicy::class,
+        DocumentType::class             =>  DocumentTypePolicy::class,
         EmailType::class                =>  EmailTypePolicy::class,
         Life::class                     =>  LifePolicy::class,
         Role::class                     =>  RolePolicy::class,
